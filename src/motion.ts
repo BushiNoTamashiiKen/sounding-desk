@@ -57,7 +57,7 @@ export function initMotion(): Motion {
       lerp: 0.085,
       anchors: false,
       smoothWheel: true,
-      prevent: (node) => Boolean(node.closest('.reader, .nav-details[open] + .nav-links')),
+      prevent: (node) => Boolean(node.closest('.reader, .watch-rail, .nav-details[open] + .nav-links')),
     })
     lenis.on('scroll', ScrollTrigger.update)
     ticker = (time: number) => {
@@ -68,20 +68,9 @@ export function initMotion(): Motion {
 
     const intro = gsap.timeline({ defaults: { ease: 'power3.out' } })
     intro
-      .from('.nav', { y: -12, duration: 0.6 }, 0)
-      .from('.hero [data-split="intro"] .word-inner', {
-        yPercent: 110,
-        duration: 0.8,
-        stagger: 0.028,
-      }, 0.05)
-      .from('.hero-aside, .trace', { y: 16, duration: 0.7 }, 0.2)
-      .fromTo(
-        '.hero-plate img',
-        { clipPath: 'inset(8% 5% 10% 5%)' },
-        { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.25, ease: 'power3.inOut' },
-        0.15,
-      )
-      .from('.rule', { scaleX: 0, duration: 0.9 }, 0.2)
+      .from('.nav', { y: -12, autoAlpha: 0, duration: 0.6 }, 0)
+      .from('.player, .watch-copy', { y: 18, autoAlpha: 0, duration: 0.8 }, 0.08)
+      .from('.upnext', { y: 14, autoAlpha: 0, duration: 0.55, stagger: 0.05 }, 0.18)
 
     document.querySelectorAll<HTMLElement>('[data-split="scroll"]').forEach((heading) => {
       const words = heading.querySelectorAll('.word-inner')

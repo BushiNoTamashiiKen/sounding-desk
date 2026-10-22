@@ -6,22 +6,22 @@
     <title>Media & Insights · Datavault AI</title>
     <meta
       name="description"
-      content="Datavault AI media room. Notes on data ownership, tokenization, and digital infrastructure, with links to the pieces published on dvlt.ai."
+      content="Media and insights from Datavault AI. Stories, video, and market context on data ownership and tokenization."
     />
     <meta property="og:title" content="Media & Insights · Datavault AI" />
     <meta
       property="og:description"
-      content="Datavault AI media room. Notes on data ownership, tokenization, and digital infrastructure, with links to the pieces published on dvlt.ai."
+      content="Media and insights from Datavault AI. Stories, video, and market context on data ownership and tokenization."
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/media/plate-field.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#071018" />
+    <meta name="theme-color" content="#04111d" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,450&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;1,500&display=swap"
       rel="stylesheet"
     />
     <script>
@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
-    <a class="skip" href="#desk">Skip to the desk</a>
+    <a class="skip" href="#content">Skip to content</a>
     <svg xmlns="http://www.w3.org/2000/svg" hidden aria-hidden="true">
       <symbol id="i-arrow" viewBox="0 0 24 24">
         <path fill="currentColor" d="M3.25 12c0-.414.336-.75.75-.75h9.25V12.75H4A.75.75 0 0 1 3.25 12" opacity=".5"/>
@@ -67,83 +67,95 @@
           Menu
         </summary>
       </details>
-      <nav class="nav-links" aria-label="Desk">
-        <a href="#top" aria-current="page">Media room</a>
-        <a href="#index">Index</a>
-        <a href="#tape">Most read</a>
-        <a href="#wire">Video</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#top" aria-current="page">Media & Insights</a>
+        <a href="#index">Stories</a>
+        <a href="#most-read">Most read</a>
         <a href="https://ir.datavaultsite.com/" target="_blank" rel="noreferrer">Investors</a>
       </nav>
       <a class="nav-demo" href="https://dvlt.ai/contact-us">Request a demo</a>
     </header>
 
-    <main id="desk">
-      <section class="hero" id="top">
-        <div class="frame hero-layout">
-          <div class="hero-copy">
-            <p class="eyebrow">Media room · Nasdaq: DVLT</p>
-            <h1 data-split="intro">
-              <span class="title-plain">Roberto Clemente digital bobbleheads arrive for <em>Clemente Day.</em></span>
-              <span class="title-split" aria-hidden="true"></span>
-            </h1>
-            <hr class="rule" />
-          </div>
-          <div class="trace" data-trace>
-            <svg class="trace-poster" viewBox="0 0 640 160" aria-hidden="true">
-              <path d="M8 118 H632" fill="none" stroke="currentColor" stroke-opacity="0.35" />
-              <path d="M8 96 C 90 96, 140 58, 210 74 S 340 124, 430 86 S 560 48, 632 78" fill="none" stroke="currentColor" stroke-width="1.6" />
-            </svg>
-            <p class="trace-caption"><span>Desk trace</span><span>Not a live feed</span></p>
-          </div>
-          <div class="hero-aside">
-            <p class="dek">
-              Two collectibles, on sale 15–29 September 2026 at day.21inright.com, mark Roberto Clemente Day and the start of National Hispanic Heritage Month.
+    <main id="content">
+      <section class="watch" id="top" aria-label="Featured video">
+        <div class="frame watch-layout">
+            <p class="eyebrow">Media & Insights · Nasdaq: DVLT</p>
+            <div class="player">
+              <iframe
+                id="player"
+                src="https://www.youtube-nocookie.com/embed/nc1eRLwoyVo?rel=0"
+                title="Mandela’s granddaughter on the next chapter of his legacy"
+                data-video="nc1eRLwoyVo"
+                data-title="Mandela’s granddaughter on the next chapter of his legacy"
+                data-date="24 Sep 2026"
+                data-datetime="2026-09-24"
+                data-source="Heritage Day"
+                data-search="mandela granddaughter heritage day"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="watch-copy">
+            <h1 id="watch-title">Mandela’s granddaughter on the next chapter of his legacy</h1>
+            <p class="watch-meta">
+              <time id="watch-date" datetime="2026-09-24">24 Sep 2026</time>
+              <span id="watch-source">Heritage Day</span>
             </p>
-            <div class="hero-actions">
-              <a class="btn" href="#note-clemente">Read the note <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a>
-              <a class="text-link" href="https://dvlt.ai/insights/roberto-clemente-digital-bobbleheads-arrive-for-clemente-day">On dvlt.ai</a>
+            <p class="watch-actions">
+              <a class="text-link" id="watch-out" href="https://youtu.be/nc1eRLwoyVo">Watch on YouTube</a>
+            </p>
             </div>
-          </div>
-          <figure class="hero-plate">
-            <img
-              src="/media/plate-field.jpg"
-              width="1800"
-              height="1198"
-              alt="Earth at night, with city lights following the curve of the planet."
-              fetchpriority="high"
-            />
-            <span class="crop tl" aria-hidden="true"></span>
-            <span class="crop tr" aria-hidden="true"></span>
-            <span class="crop bl" aria-hidden="true"></span>
-            <span class="crop br" aria-hidden="true"></span>
-            <p class="coord" data-coord aria-hidden="true">Frame 0.50 / 0.62</p>
-            <figcaption class="plate-cap">Plate. Night field. Not the collectible.</figcaption>
-          </figure>
-          <dl class="hero-meta">
-            <div>
-              <dt>Desk</dt>
-              <dd>Tokenization</dd>
+          <aside class="watch-rail" aria-label="Up next">
+            <p class="rail-label">Up next</p>
+            <div class="rail-scroll">
+            <ol class="rail">
+              <li data-entry data-topic="video" data-search="speed safety ai race newsmax">
+                <a class="upnext" href="https://youtu.be/5qQPShkEKHw" data-video="5qQPShkEKHw" data-title="Speed versus safety in the AI race" data-date="23 Sep 2026" data-datetime="2026-09-23" data-source="Datavault AI CEO on Newsmax" data-search="speed safety ai race newsmax">
+                  <img src="https://i.ytimg.com/vi/5qQPShkEKHw/mqdefault.jpg" alt="" width="320" height="180" />
+                  <span><strong>Speed versus safety in the AI race</strong><time datetime="2026-09-23">23 Sep 2026</time></span>
+                </a>
+              </li>
+              <li data-entry data-topic="video" data-search="concerns future of ai">
+                <a class="upnext" href="https://youtu.be/vNUaPfunkEU" data-video="vNUaPfunkEU" data-title="Concerns mount on the future of AI" data-date="23 Sep 2026" data-datetime="2026-09-23" data-source="" data-search="concerns future of ai">
+                  <img src="https://i.ytimg.com/vi/vNUaPfunkEU/mqdefault.jpg" alt="" width="320" height="180" />
+                  <span><strong>Concerns mount on the future of AI</strong><time datetime="2026-09-23">23 Sep 2026</time></span>
+                </a>
+              </li>
+              <li data-entry data-topic="video" data-search="keeping ai subordinate newsmax">
+                <a class="upnext" href="https://youtu.be/xahc2yMSme4" data-video="xahc2yMSme4" data-title="Keeping AI subordinate to people" data-date="22 Sep 2026" data-datetime="2026-09-22" data-source="Datavault AI CEO on Newsmax" data-search="keeping ai subordinate newsmax">
+                  <img src="https://i.ytimg.com/vi/xahc2yMSme4/mqdefault.jpg" alt="" width="320" height="180" />
+                  <span><strong>Keeping AI subordinate to people</strong><time datetime="2026-09-22">22 Sep 2026</time></span>
+                </a>
+              </li>
+              <li data-entry data-topic="video" data-search="ai surveillance regulation">
+                <a class="upnext" href="https://youtu.be/ZSTlJXPitIM" data-video="ZSTlJXPitIM" data-title="AI surveillance and regulation" data-date="22 Sep 2026" data-datetime="2026-09-22" data-source="A technology chief on the future of AI" data-search="ai surveillance regulation">
+                  <img src="https://i.ytimg.com/vi/ZSTlJXPitIM/mqdefault.jpg" alt="" width="320" height="180" />
+                  <span><strong>AI surveillance and regulation</strong><time datetime="2026-09-22">22 Sep 2026</time></span>
+                </a>
+              </li>
+              <li data-entry data-topic="video" data-search="extinction risk nate insights john bachman">
+                <a class="upnext" href="https://youtu.be/o6avdVngWMY" data-video="o6avdVngWMY" data-title="AI extinction risk: industry leaders raise the alarm" data-date="15 Sep 2026" data-datetime="2026-09-15" data-source="Nate Insights with John Bachman" data-search="extinction risk nate insights john bachman">
+                  <img src="https://i.ytimg.com/vi/o6avdVngWMY/mqdefault.jpg" alt="" width="320" height="180" />
+                  <span><strong>AI extinction risk: industry leaders raise the alarm</strong><time datetime="2026-09-15">15 Sep 2026</time></span>
+                </a>
+              </li>
+              <li data-entry data-topic="video" data-search="data storage breakthroughs nathaniel bradley">
+                <a class="upnext" href="https://youtu.be/3qZbOqPxjbc" data-video="3qZbOqPxjbc" data-title="AI data storage breakthroughs" data-date="26 Aug 2026" data-datetime="2026-08-26" data-source="Inside Datavault AI with Nathaniel Bradley" data-search="data storage breakthroughs nathaniel bradley">
+                  <img src="https://i.ytimg.com/vi/3qZbOqPxjbc/mqdefault.jpg" alt="" width="320" height="180" />
+                  <span><strong>AI data storage breakthroughs</strong><time datetime="2026-08-26">26 Aug 2026</time></span>
+                </a>
+              </li>
+            </ol>
             </div>
-            <div>
-              <dt>Source</dt>
-              <dd>Datavault AI</dd>
-            </div>
-            <div>
-              <dt>Filed</dt>
-              <dd>15 Sep 2026</dd>
-            </div>
-            <div>
-              <dt>Window</dt>
-              <dd>Through 29 Sep</dd>
-            </div>
-          </dl>
+          </aside>
         </div>
       </section>
 
       <section class="section" aria-labelledby="context-title">
         <div class="frame">
           <div class="section-head">
-            <p class="kicker">Cited on dvlt.ai</p>
+            <p class="kicker">Context</p>
             <h2 id="context-title" data-split="scroll">
               <span class="title-plain">Market context, not company results.</span>
               <span class="title-split" aria-hidden="true"></span>
@@ -163,15 +175,15 @@
       <section class="section" id="index" aria-labelledby="index-title">
         <div class="frame">
           <div class="section-head">
-            <p class="kicker">The issue index</p>
+            <p class="kicker">Stories</p>
             <h2 id="index-title" data-split="scroll">
-              <span class="title-plain">What the desk is filing.</span>
+              <span class="title-plain">From the media index.</span>
               <span class="title-split" aria-hidden="true"></span>
             </h2>
-            <p>These are the notes linked from the live room. The full index holds 59 stories.</p>
-            <p><a class="text-link" href="https://dvlt.ai/insights">Open the live index</a></p>
+            <p>A selection from the media index. The full index holds 59 stories.</p>
+            <p><a class="text-link" href="https://dvlt.ai/insights">All stories</a></p>
           </div>
-          <div class="filters" role="toolbar" aria-label="Filter this desk">
+          <div class="filters" role="toolbar" aria-label="Filter stories">
             <button type="button" data-filter="all" aria-pressed="true">All</button>
             <button type="button" data-filter="tokenization" aria-pressed="false">Tokenization</button>
             <button type="button" data-filter="ai" aria-pressed="false">AI</button>
@@ -181,12 +193,22 @@
             <button type="button" data-filter="video" aria-pressed="false">Video</button>
             <label class="search">
               <svg class="icon" aria-hidden="true"><use href="#i-search" /></svg>
-              <span class="sr">Search this desk</span>
-              <input id="search" type="search" placeholder="Search this desk" autocomplete="off" />
+              <span class="sr">Search stories</span>
+              <input id="search" type="search" placeholder="Search stories" autocomplete="off" />
             </label>
           </div>
           <p id="result" class="result" role="status"></p>
           <div class="story-grid" id="story-grid">
+            <article class="story s-clemente" data-entry data-topic="tokenization" data-search="roberto clemente digital bobbleheads clemente day">
+              <a class="story-link" href="#note-clemente">
+                <div class="story-body">
+                  <p class="kicker">Tokenization · Datavault AI</p>
+                  <h3 class="story-title">Roberto Clemente digital bobbleheads arrive for Clemente Day</h3>
+                  <p class="dek">Two collectibles, on sale 15–29 September 2026 at day.21inright.com.</p>
+                  <p class="story-foot"><span>15 Sep 2026</span><span>Read</span></p>
+                </div>
+              </a>
+            </article>
             <article class="story s-valuing" data-entry data-topic="ai" data-search="valuing information ecosystem strategy ceo today">
               <a class="story-link" href="#note-valuing">
                 <figure class="story-media">
@@ -238,16 +260,16 @@
               </a>
             </article>
           </div>
-          <p id="empty" class="empty" hidden><strong>No note under that filter.</strong> The live index holds the rest.</p>
+          <p id="empty" class="empty" hidden><strong>No stories match that.</strong></p>
         </div>
       </section>
 
-      <section class="tape" id="tape" aria-labelledby="tape-title">
+      <section class="tape" id="most-read" aria-labelledby="tape-title">
         <div class="tape-pin">
           <div class="tape-head">
-            <p class="kicker">Most read</p>
+            <p class="kicker">Readers</p>
             <h2 id="tape-title" data-split="scroll">
-              <span class="title-plain">The tape.</span>
+              <span class="title-plain">Most read</span>
               <span class="title-split" aria-hidden="true"></span>
             </h2>
           </div>
@@ -293,69 +315,6 @@
         </div>
       </section>
 
-      <section class="section" id="wire" aria-labelledby="wire-title">
-        <div class="frame">
-          <div class="section-head">
-            <p class="kicker">Video</p>
-            <h2 id="wire-title" data-split="scroll">
-              <span class="title-plain">On the wire.</span>
-              <span class="title-split" aria-hidden="true"></span>
-            </h2>
-          </div>
-          <ol class="rows">
-            <li data-entry data-topic="video" data-search="mandela granddaughter heritage day">
-              <a class="wire-link" href="https://youtu.be/nc1eRLwoyVo" target="_blank" rel="noreferrer">
-                <time datetime="2026-09-24">24 Sep 2026</time>
-                <span class="wire-copy"><strong>Mandela’s granddaughter on the next chapter of his legacy</strong><p>Heritage Day</p></span>
-                <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
-              </a>
-            </li>
-            <li data-entry data-topic="video" data-search="speed safety ai race newsmax">
-              <a class="wire-link" href="https://youtu.be/5qQPShkEKHw" target="_blank" rel="noreferrer">
-                <time datetime="2026-09-23">23 Sep 2026</time>
-                <span class="wire-copy"><strong>Speed versus safety in the AI race</strong><p>Datavault AI CEO on Newsmax</p></span>
-                <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
-              </a>
-            </li>
-            <li data-entry data-topic="video" data-search="concerns future of ai">
-              <a class="wire-link" href="https://youtu.be/vNUaPfunkEU" target="_blank" rel="noreferrer">
-                <time datetime="2026-09-23">23 Sep 2026</time>
-                <span class="wire-copy"><strong>Concerns mount on the future of AI</strong></span>
-                <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
-              </a>
-            </li>
-            <li data-entry data-topic="video" data-search="keeping ai subordinate newsmax">
-              <a class="wire-link" href="https://youtu.be/xahc2yMSme4" target="_blank" rel="noreferrer">
-                <time datetime="2026-09-22">22 Sep 2026</time>
-                <span class="wire-copy"><strong>Keeping AI subordinate to people</strong><p>Datavault AI CEO on Newsmax</p></span>
-                <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
-              </a>
-            </li>
-            <li data-entry data-topic="video" data-search="ai surveillance regulation">
-              <a class="wire-link" href="https://youtu.be/ZSTlJXPitIM" target="_blank" rel="noreferrer">
-                <time datetime="2026-09-22">22 Sep 2026</time>
-                <span class="wire-copy"><strong>AI surveillance and regulation</strong><p>A technology chief on the future of AI</p></span>
-                <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
-              </a>
-            </li>
-            <li data-entry data-topic="video" data-search="extinction risk nate insights john bachman">
-              <a class="wire-link" href="https://youtu.be/o6avdVngWMY" target="_blank" rel="noreferrer">
-                <time datetime="2026-09-15">15 Sep 2026</time>
-                <span class="wire-copy"><strong>AI extinction risk: industry leaders raise the alarm</strong><p>Nate Insights with John Bachman</p></span>
-                <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
-              </a>
-            </li>
-            <li data-entry data-topic="video" data-search="data storage breakthroughs nathaniel bradley">
-              <a class="wire-link" href="https://youtu.be/3qZbOqPxjbc" target="_blank" rel="noreferrer">
-                <time datetime="2026-08-26">26 Aug 2026</time>
-                <span class="wire-copy"><strong>AI data storage breakthroughs</strong><p>Inside Datavault AI with Nathaniel Bradley</p></span>
-                <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
-              </a>
-            </li>
-          </ol>
-        </div>
-      </section>
-
       <section class="section" id="record" aria-labelledby="record-title">
         <div class="frame">
           <article class="earn">
@@ -363,12 +322,12 @@
               <p class="kicker">On the record</p>
               <h2 id="record-title">Q2 2026 results.</h2>
               <p class="dek">Wednesday, 19 August 2026, 8:30 a.m. ET. Nathaniel Bradley, chief executive, and Brett Moyer, chief financial officer, presented the quarter.</p>
-              <p class="card-meta"><span>Nasdaq: DVLT</span><span>Investor desk</span></p>
-              <p><a class="btn" href="https://ir.datavaultsite.com/">Open the investor desk <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a></p>
+              <p class="card-meta"><span>Nasdaq: DVLT</span><span>Investor relations</span></p>
+              <p><a class="btn" href="https://ir.datavaultsite.com/">Investor relations <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a></p>
             </div>
             <figure class="earn-media">
               <img src="/media/plate-lock.jpg" width="1800" height="1201" alt="A backlit circuit schematic on glass." loading="lazy" />
-              <figcaption>Plate. A schematic. Not a figure from the call.</figcaption>
+              <figcaption>A schematic, not a figure from the call.</figcaption>
             </figure>
           </article>
         </div>
@@ -377,9 +336,9 @@
       <section class="section" id="press" aria-labelledby="press-title">
         <div class="frame">
           <div class="section-head">
-            <p class="kicker">Press desk</p>
+            <p class="kicker">Press</p>
             <h2 id="press-title" data-split="scroll">
-              <span class="title-plain">Filed with investor relations.</span>
+              <span class="title-plain">From investor relations.</span>
               <span class="title-split" aria-hidden="true"></span>
             </h2>
           </div>
@@ -395,7 +354,7 @@
       <section class="section" id="alerts" aria-labelledby="alerts-title">
         <div class="frame alerts">
           <div>
-            <p class="kicker">Briefing</p>
+            <p class="kicker">Email</p>
             <h2 id="alerts-title" data-split="scroll">
               <span class="title-plain">Insights by email.</span>
               <span class="title-split" aria-hidden="true"></span>
@@ -408,18 +367,18 @@
               <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required />
             </label>
             <label class="field">
-              <span>Desk</span>
-              <select id="desk-select" name="desk">
-                <option value="all">All desks</option>
+              <span>Topic</span>
+              <select id="topic-select" name="topic">
+                <option value="all">All topics</option>
                 <option value="tokenization">Tokenization</option>
                 <option value="ai">AI</option>
                 <option value="markets">Markets</option>
                 <option value="platform">Platform</option>
               </select>
             </label>
-            <button class="btn" type="submit"><span class="btn-label">File for alerts</span> <svg class="icon" aria-hidden="true"><use href="#i-letter" /></svg></button>
+            <button class="btn" type="submit"><span class="btn-label">Get alerts</span> <svg class="icon" aria-hidden="true"><use href="#i-letter" /></svg></button>
             <p id="alert-status" class="form-status" role="status"></p>
-            <p><a class="text-link" href="https://ir.datavaultsite.com/news-events/email-alerts">Open the investor desk</a></p>
+            <p><a class="text-link" href="https://ir.datavaultsite.com/news-events/email-alerts">Email alerts</a></p>
           </form>
         </div>
       </section>
@@ -443,11 +402,11 @@
         </nav>
         <div class="footer-grid">
           <div>
-            <h2>This desk</h2>
+            <h2>On this page</h2>
             <ul>
-              <li><a href="#index">Index</a></li>
-              <li><a href="#tape">Most read</a></li>
-              <li><a href="#wire">Video</a></li>
+              <li><a href="#index">Stories</a></li>
+              <li><a href="#most-read">Most read</a></li>
+              <li><a href="#top">Video</a></li>
               <li><a href="#alerts">Email alerts</a></li>
             </ul>
           </div>
@@ -469,7 +428,7 @@
         </div>
         <div class="legal">
           <p>© 2026 Datavault AI Inc.</p>
-          <p>Stories, figures, and the mark are Datavault AI’s, as published on dvlt.ai. This room links to those notes. It does not replace the investor desk.</p>
+          <p>Stories and figures are published by Datavault AI. Investor relations remains the record for filings and alerts.</p>
           <p>Plates: Unsplash photographs photo-1451187580459-43490279c0fa, photo-1558494949-ef010cbdcc31, photo-1518770660439-4636190af475, photo-1544197150-b99a580bb7a8, and photo-1550751827-4bd374c3f58b. Icons: Solar Duotone Bold via Iconify. Logo and favicon: dvlt.ai.</p>
         </div>
       </div>
@@ -562,7 +521,7 @@
 
     <article class="reader" id="note-markets" tabindex="-1" aria-labelledby="markets-title">
       <div class="reader-bar">
-        <a href="#tape"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg> Close</a>
+        <a href="#most-read"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg> Close</a>
         <a class="text-link" href="https://dvlt.ai/insights/markets-are-missing-value-infrastructure-layer-emerging-beneath-ai">Full note</a>
       </div>
       <div class="reader-body">
@@ -578,7 +537,7 @@
 
     <article class="reader" id="note-campus" tabindex="-1" aria-labelledby="campus-title">
       <div class="reader-bar">
-        <a href="#tape"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg> Close</a>
+        <a href="#most-read"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg> Close</a>
         <a class="text-link" href="https://dvlt.ai/insights/datavault-campus-activation-liberty-university">Full note</a>
       </div>
       <div class="reader-body">
@@ -594,7 +553,7 @@
 
     <article class="reader" id="note-patents" tabindex="-1" aria-labelledby="patents-title">
       <div class="reader-bar">
-        <a href="#tape"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg> Close</a>
+        <a href="#most-read"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg> Close</a>
         <a class="text-link" href="https://dvlt.ai/insights/turning-data-into-asset-class">Full note</a>
       </div>
       <div class="reader-body">
@@ -610,7 +569,7 @@
 
     <article class="reader" id="note-asset" tabindex="-1" aria-labelledby="asset-title">
       <div class="reader-bar">
-        <a href="#tape"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg> Close</a>
+        <a href="#most-read"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg> Close</a>
         <a class="text-link" href="https://dvlt.ai/insights/datavault-ai-offers-the-infrastructure-to-turn-data-into-a-monetizable-asset">Full piece</a>
       </div>
       <div class="reader-body">
@@ -626,7 +585,7 @@
 
     <article class="reader" id="note-mandela" tabindex="-1" aria-labelledby="mandela-title">
       <div class="reader-bar">
-        <a href="#tape"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg> Close</a>
+        <a href="#most-read"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg> Close</a>
         <a class="text-link" href="https://dvlt.ai/insights/datavault-ais-mandela-dollar-isnt-just-another-stablecoin">Full piece</a>
       </div>
       <div class="reader-body">

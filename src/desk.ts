@@ -33,9 +33,21 @@ export function initDesk(lenis: Lenis | null) {
       entry.hidden = !visible
       if (visible && entry.closest('#story-grid')) gridShown += 1
     })
-    if (empty) empty.hidden = gridShown !== 0
+    if (empty) {
+      empty.hidden = gridShown !== 0
+      const label = empty.querySelector('strong')
+      if (label) {
+        label.textContent = topic === 'video' && !query
+          ? 'Video is in the player above.'
+          : 'No stories match that.'
+      }
+    }
     if (result) {
-      result.textContent = gridShown === 1 ? '1 note in this index' : `${gridShown} notes in this index`
+      result.textContent = gridShown === 1 ? '1 story' : `${gridShown} stories`
+    }
+    const railAside = document.querySelector<HTMLElement>('.watch-rail')
+    if (railAside) {
+      railAside.hidden = railAside.querySelectorAll('.rail > li:not([hidden])').length === 0
     }
     grid?.classList.toggle('is-filtered', topic !== 'all' || query.length > 0)
     requestAnimationFrame(() => ScrollTrigger.refresh())
@@ -103,17 +115,6 @@ export function initDesk(lenis: Lenis | null) {
   })
 
   const fine = window.matchMedia('(pointer: fine)')
-  const plate = document.querySelector<HTMLElement>('.hero-plate')
-  const coord = document.querySelector<HTMLElement>('[data-coord]')
-  if (fine.matches && plate && coord) {
-    plate.addEventListener('pointermove', (event) => {
-      const rect = plate.getBoundingClientRect()
-      const x = (event.clientX - rect.left) / rect.width
-      const y = (event.clientY - rect.top) / rect.height
-      coord.textContent = `Frame ${x.toFixed(2)} / ${y.toFixed(2)}`
-      window.dispatchEvent(new CustomEvent('desk-pointer', { detail: x }))
-    })
-  }
 
   document.querySelectorAll<HTMLElement>('.story, .wide, .earn').forEach((card) => {
     card.addEventListener('pointermove', (event) => {
@@ -136,7 +137,7 @@ export function initDesk(lenis: Lenis | null) {
       const saved = localStorage.getItem(STORAGE_KEY)
       if (saved) {
         email.value = saved
-        setStatus('Saved in this browser. Confirm the alert on the investor desk.', 'ok')
+        setStatus('Saved in this browser. Confirm the alert with investor relations.', 'ok')
       }
     } catch {
       /* storage unavailable */
@@ -150,7 +151,7 @@ export function initDesk(lenis: Lenis | null) {
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
     if (!valid) {
       email.setAttribute('aria-invalid', 'true')
-      setStatus('Enter an email address the desk can read.', 'error')
+      setStatus('Enter an email address.', 'error')
       email.focus()
       return
     }
@@ -158,19 +159,88 @@ export function initDesk(lenis: Lenis | null) {
     const button = form.querySelector('button')
     const label = form.querySelector('.btn-label')
     if (button) button.disabled = true
-    if (label) label.textContent = 'Filing'
+    if (label) label.textContent = 'Saving'
     form.setAttribute('aria-busy', 'true')
     window.setTimeout(() => {
       try {
         localStorage.setItem(STORAGE_KEY, value)
         setStatus('Saved in this browser only. Investor relations sends the alert. Continue there to confirm.', 'ok')
       } catch {
-        setStatus('This browser could not store the address. Use the investor desk link.', 'error')
+        setStatus('This browser could not store the address. Use the investor relations link.', 'error')
       }
       if (button) button.disabled = false
-      if (label) label.textContent = 'File for alerts'
+      if (label) label.textContent = 'Get alerts'
       form.removeAttribute('aria-busy')
     }, 500)
+  })
+
+  const player = document.querySelector<HTMLIFrameElement>('#player')
+  const watchTitle = document.querySelector('#watch-title')
+  const watchDate = document.querySelector('#watch-date')
+  const watchSource = document.querySelector('#watch-source')
+  const watchOut = document.querySelector<HTMLAnchorElement>('#watch-out')
+  const rail = document.querySelector('.rail')
+
+  const readVideo = (node: HTMLElement) => ({
+    id: node.dataset.video || '',
+    title: node.dataset.title || '',
+    date: node.dataset.date || '',
+    datetime: node.dataset.datetime || '',
+    source: node.dataset.source || '',
+    search: node.dataset.search || '',
+  })
+
+  const writeLink = (link: HTMLAnchorElement, video: ReturnType<typeof readVideo>) => {
+    const item = link.closest('li')
+    if (item instanceof HTMLElement) item.dataset.search = video.search
+    link.dataset.video = video.id
+    link.dataset.title = video.title
+    link.dataset.date = video.date
+    link.dataset.datetime = video.datetime
+    link.dataset.source = video.source
+    link.dataset.search = video.search
+    link.href = `https://youtu.be/${video.id}`
+    const strong = link.querySelector('strong')
+    const time = link.querySelector('time')
+    const img = link.querySelector('img')
+    if (strong) strong.textContent = video.title
+    if (time instanceof HTMLTimeElement) {
+      time.textContent = video.date
+      time.dateTime = video.datetime
+    }
+    if (img) img.src = `https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`
+  }
+
+  rail?.addEventListener('click', (event) => {
+    const link = (event.target as Element | null)?.closest('a.upnext')
+    if (!(link instanceof HTMLAnchorElement) || !player) return
+    event.preventDefault()
+    event.stopPropagation()
+    const next = readVideo(link)
+    const prev = readVideo(player)
+    if (!next.id || next.id === prev.id) return
+    player.src = `https://www.youtube-nocookie.com/embed/${next.id}?rel=0`
+    player.title = next.title
+    player.dataset.video = next.id
+    player.dataset.title = next.title
+    player.dataset.date = next.date
+    player.dataset.datetime = next.datetime
+    player.dataset.source = next.source
+    player.dataset.search = next.search
+    if (watchTitle) watchTitle.textContent = next.title
+    if (watchDate instanceof HTMLTimeElement) {
+      watchDate.textContent = next.date
+      watchDate.dateTime = next.datetime
+    }
+    if (watchSource) watchSource.textContent = next.source
+    if (watchOut) watchOut.href = `https://youtu.be/${next.id}`
+    writeLink(link, prev)
+    apply()
+    const rect = player.getBoundingClientRect()
+    if (rect.top < 72 || rect.bottom > window.innerHeight) {
+      if (lenis) lenis.scrollTo(player, { offset: -88 })
+      else player.scrollIntoView({ block: 'start' })
+    }
   })
 
   syncReader()
