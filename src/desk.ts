@@ -1,10 +1,37 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import type Lenis from 'lenis'
+import { cueWatch } from './film'
+import { track } from './track'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const STORAGE_KEY = 'dvlt-media-alert'
+const SEEN_KEY = 'dvlt-media-seen'
+
+function readSeen(): string | null {
+  try {
+    return localStorage.getItem(SEEN_KEY)
+  } catch {
+    return null
+  }
+}
+
+function writeSeen() {
+  try {
+    localStorage.setItem(SEEN_KEY, new Date().toISOString())
+  } catch {
+    /* private mode */
+  }
+}
+
+function scrollToEl(lenis: Lenis | null, el: Element, offset = -72, immediate = false) {
+  const top = Math.max(0, window.scrollY + el.getBoundingClientRect().top + offset)
+  if (lenis && typeof lenis.scrollTo === 'function') {
+    lenis.scrollTo(top, { immediate, duration: immediate ? 0 : 1.05 })
+    return
+  }
+  window.scrollTo({ top, behavior: immediate ? 'auto' : 'smooth' })
+}
 
 export function initDesk(lenis: Lenis | null) {
   const entries = Array.from(document.querySelectorAll<HTMLElement>('[data-entry]'))
@@ -13,43 +40,48 @@ export function initDesk(lenis: Lenis | null) {
   const empty = document.querySelector<HTMLElement>('#empty')
   const result = document.querySelector<HTMLElement>('#result')
   const grid = document.querySelector<HTMLElement>('#story-grid')
-  const readers = Array.from(document.querySelectorAll<HTMLElement>('.reader'))
-  const shells = [document.querySelector('header'), document.querySelector('main'), document.querySelector('footer')]
-  const form = document.querySelector<HTMLFormElement>('#alert-form')
-  const status = document.querySelector<HTMLElement>('#alert-status')
-  const email = document.querySelector<HTMLInputElement>('#email')
+  const notes = document.querySelector<HTMLElement>('#notes')
   const nav = document.querySelector<HTMLDetailsElement>('.nav-details')
   let topic = 'all'
-  let lastTrigger: HTMLElement | null = null
+
+  const seen = readSeen()
+  const visitLabel = document.querySelector<HTMLElement>('#visit-label')
+  if (seen && visitLabel) visitLabel.hidden = false
+  if (seen) {
+    const then = Date.parse(seen)
+    if (!Number.isNaN(then)) {
+      document.querySelectorAll<HTMLElement>('[data-published]').forEach((el) => {
+        const published = Date.parse(el.dataset.published || '')
+        if (!Number.isNaN(published) && published > then) el.classList.add('is-new')
+      })
+    }
+  }
+  window.addEventListener('pagehide', writeSeen)
 
   const apply = () => {
     const query = search?.value.trim().toLowerCase() ?? ''
-    let gridShown = 0
+    let shown = 0
     entries.forEach((entry) => {
       const topicOk = topic === 'all' || entry.dataset.topic === topic
       const hay = (entry.dataset.search || entry.textContent || '').toLowerCase()
       const textOk = !query || hay.includes(query)
       const visible = topicOk && textOk
       entry.hidden = !visible
-      if (visible && entry.closest('#story-grid')) gridShown += 1
+      if (visible && (entry.closest('#story-grid') || entry.closest('.desk-list'))) shown += 1
     })
     if (empty) {
-      empty.hidden = gridShown !== 0
-      const label = empty.querySelector('strong')
-      if (label) {
-        label.textContent = topic === 'video' && !query
-          ? 'Video is in the player above.'
-          : 'No stories match that.'
-      }
+      empty.hidden = shown !== 0
     }
     if (result) {
-      result.textContent = gridShown === 1 ? '1 story' : `${gridShown} stories`
+      result.hidden = shown === 0
+      result.textContent = shown === 1 ? '1 story' : `${shown} stories`
     }
     const railAside = document.querySelector<HTMLElement>('.watch-rail')
     if (railAside) {
       railAside.hidden = railAside.querySelectorAll('.rail > li:not([hidden])').length === 0
     }
     grid?.classList.toggle('is-filtered', topic !== 'all' || query.length > 0)
+    if (notes) notes.hidden = notes.querySelectorAll('.chapter:not([hidden])').length === 0
     requestAnimationFrame(() => ScrollTrigger.refresh())
   }
 
@@ -63,55 +95,33 @@ export function initDesk(lenis: Lenis | null) {
 
   search?.addEventListener('input', apply)
 
-  const syncReader = () => {
-    const open = document.querySelector<HTMLElement>('.reader:target')
-    document.body.classList.toggle('is-reading', Boolean(open))
-    readers.forEach((reader) => {
-      if (reader === open) reader.removeAttribute('inert')
-      else reader.setAttribute('inert', '')
-    })
-    shells.forEach((shell) => {
-      if (!shell) return
-      if (open) shell.setAttribute('inert', '')
-      else shell.removeAttribute('inert')
-    })
-    if (open) {
-      lenis?.stop()
-      open.focus()
-      const title = open.querySelector('h2')?.textContent?.trim()
-      if (title) document.title = `${title} · Datavault AI`
-    } else {
-      lenis?.start()
-      document.title = 'Media & Insights · Datavault AI'
-      lastTrigger?.focus()
-      lastTrigger = null
-    }
-  }
-
   document.addEventListener('click', (event) => {
     const link = (event.target as Element | null)?.closest('a')
     if (!(link instanceof HTMLAnchorElement)) return
     const href = link.getAttribute('href') || ''
-    if (href.startsWith('#note-')) lastTrigger = link
 
     if (window.matchMedia('(max-width: 959px)').matches && link.closest('.nav-links')) {
       nav?.removeAttribute('open')
     }
 
+    if (link.dataset.track === 'subscribe_click') {
+      track('subscribe_click', { href: link.href })
+    }
+
+    if (
+      link.classList.contains('story-link') ||
+      link.classList.contains('desk-link') ||
+      (link.classList.contains('btn') && link.closest('.chapter-prose'))
+    ) {
+      track('note_click', { href: link.href })
+    }
+
     if (!href.startsWith('#') || href === '#') return
     const target = document.querySelector(href)
-    if (!target || target.classList.contains('reader') || !lenis) return
+    if (!target) return
     event.preventDefault()
     if (location.hash !== href) history.pushState(null, '', href)
-    lenis.scrollTo(target, { offset: -72 })
-    syncReader()
-  })
-
-  window.addEventListener('hashchange', syncReader)
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && document.querySelector('.reader:target')) {
-      location.hash = 'index'
-    }
+    scrollToEl(lenis, target, -72)
   })
 
   const fine = window.matchMedia('(pointer: fine)')
@@ -123,55 +133,6 @@ export function initDesk(lenis: Lenis | null) {
       card.style.setProperty('--mx', `${event.clientX - rect.left}px`)
       card.style.setProperty('--my', `${event.clientY - rect.top}px`)
     })
-  })
-
-  const setStatus = (message: string, kind: 'ok' | 'error' | '') => {
-    if (!status) return
-    status.textContent = message
-    status.classList.toggle('is-ok', kind === 'ok')
-    status.classList.toggle('is-error', kind === 'error')
-  }
-
-  if (email) {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY)
-      if (saved) {
-        email.value = saved
-        setStatus('Saved in this browser. Confirm the alert with investor relations.', 'ok')
-      }
-    } catch {
-      /* storage unavailable */
-    }
-  }
-
-  form?.addEventListener('submit', (event) => {
-    event.preventDefault()
-    if (!email) return
-    const value = email.value.trim()
-    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-    if (!valid) {
-      email.setAttribute('aria-invalid', 'true')
-      setStatus('Enter an email address.', 'error')
-      email.focus()
-      return
-    }
-    email.removeAttribute('aria-invalid')
-    const button = form.querySelector('button')
-    const label = form.querySelector('.btn-label')
-    if (button) button.disabled = true
-    if (label) label.textContent = 'Saving'
-    form.setAttribute('aria-busy', 'true')
-    window.setTimeout(() => {
-      try {
-        localStorage.setItem(STORAGE_KEY, value)
-        setStatus('Saved in this browser only. Investor relations sends the alert. Continue there to confirm.', 'ok')
-      } catch {
-        setStatus('This browser could not store the address. Use the investor relations link.', 'error')
-      }
-      if (button) button.disabled = false
-      if (label) label.textContent = 'Get alerts'
-      form.removeAttribute('aria-busy')
-    }, 500)
   })
 
   const player = document.querySelector<HTMLIFrameElement>('#player')
@@ -219,7 +180,6 @@ export function initDesk(lenis: Lenis | null) {
     const next = readVideo(link)
     const prev = readVideo(player)
     if (!next.id || next.id === prev.id) return
-    player.src = `https://www.youtube-nocookie.com/embed/${next.id}?rel=0`
     player.title = next.title
     player.dataset.video = next.id
     player.dataset.title = next.title
@@ -227,6 +187,7 @@ export function initDesk(lenis: Lenis | null) {
     player.dataset.datetime = next.datetime
     player.dataset.source = next.source
     player.dataset.search = next.search
+    cueWatch(next.id)
     if (watchTitle) watchTitle.textContent = next.title
     if (watchDate instanceof HTMLTimeElement) {
       watchDate.textContent = next.date
@@ -238,17 +199,20 @@ export function initDesk(lenis: Lenis | null) {
     apply()
     const rect = player.getBoundingClientRect()
     if (rect.top < 72 || rect.bottom > window.innerHeight) {
-      if (lenis) lenis.scrollTo(player, { offset: -88 })
-      else player.scrollIntoView({ block: 'start' })
+      scrollToEl(lenis, player, -88)
     }
   })
 
-  syncReader()
   apply()
+
+  if (location.hash.length > 1) {
+    const target = document.querySelector(location.hash)
+    if (target) scrollToEl(lenis, target, -72, true)
+  }
 
   return {
     destroy() {
-      shells.forEach((shell) => shell?.removeAttribute('inert'))
+      /* listeners live with the page */
     },
   }
 }
