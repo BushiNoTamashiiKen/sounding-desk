@@ -70,11 +70,10 @@ export function initMotion(): Motion {
     const intro = gsap.timeline({ defaults: { ease: 'power3.out' } })
     intro
       .from('.nav', { y: -12, autoAlpha: 0, duration: 0.6 }, 0)
-      .from('.billboard [data-split="intro"] .word-inner', { yPercent: 110, duration: 0.9, stagger: 0.045 }, 0.08)
-      .from('.billboard-sub', { y: 10, autoAlpha: 0, duration: 0.55 }, 0.32)
-      .from('.billboard .rule', { scaleX: 0, duration: 0.6 }, 0.28)
-      .from('.billboard-player', { clipPath: 'inset(12% 8% 12% 8%)', duration: 1.1 }, 0.12)
-      .from('.billboard-aside', { y: 18, autoAlpha: 0, duration: 0.7 }, 0.45)
+      .from('.billboard h1', { y: 16, autoAlpha: 0, duration: 0.7 }, 0.08)
+      .from('.billboard-sub', { y: 10, autoAlpha: 0, duration: 0.55 }, 0.22)
+      .from('.lead-actions', { y: 10, autoAlpha: 0, duration: 0.5 }, 0.32)
+      .from('.billboard-player', { clipPath: 'inset(8% 6% 8% 6%)', duration: 1.05 }, 0.12)
 
     const billboard = document.querySelector<HTMLElement>('.billboard')
     const film = document.querySelector<HTMLElement>('.billboard-player')

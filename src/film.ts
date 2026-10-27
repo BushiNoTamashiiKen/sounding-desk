@@ -11,6 +11,7 @@ type YTPlayer = {
   getDuration: () => number
   getPlayerState: () => number
   cueVideoById: (videoId: string) => void
+  loadVideoById: (videoId: string) => void
   destroy: () => void
 }
 
@@ -80,6 +81,7 @@ function fmt(value: number) {
 
 function armSrc(iframe: HTMLIFrameElement) {
   const url = new URL(iframe.src)
+  url.hostname = 'www.youtube.com'
   url.searchParams.set('rel', '0')
   url.searchParams.set('playsinline', '1')
   url.searchParams.set('controls', '0')
@@ -104,7 +106,7 @@ class Film {
   private play30 = false
   private raf = 0
   private readonly cleanups: Array<() => void> = []
-  cue: (id: string) => void = () => undefined
+  cue: (id: string, play?: boolean) => void = () => undefined
 
   constructor(root: HTMLElement) {
     const iframe = root.querySelector('iframe')
@@ -142,7 +144,8 @@ class Film {
       'webkitRequestFullscreen' in root
     if (!canFull) full.hidden = true
 
-    const name = () => iframe.dataset.title || 'video'
+    if (!root.dataset.film && iframe.dataset.title) root.dataset.film = iframe.dataset.title
+    const name = () => root.dataset.film || 'coverage'
 
     const syncLabel = () => {
       const playing = root.classList.contains('is-playing')
@@ -373,18 +376,22 @@ class Film {
         apiFailed = true
       })
 
-    this.cue = (id: string) => {
-      this.wantsPlay = false
+    this.cue = (id: string, playNext = false) => {
+      this.wantsPlay = playNext
       this.queued = id
       play.href = `https://youtu.be/${id}`
+      const frame = root.querySelector('iframe') ?? iframe
+      if (root.dataset.film) frame.title = root.dataset.film
       root.classList.remove('is-playing', 'is-started')
       if (poster) poster.src = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`
       root.style.setProperty('--p', '0')
       elapsed.textContent = '0:00'
       syncLabel()
       if (!this.yt) return
-      this.yt.cueVideoById(id)
+      if (playNext) this.yt.loadVideoById(id)
+      else this.yt.cueVideoById(id)
       this.queued = null
+      this.wantsPlay = false
       stop()
     }
   }
@@ -402,15 +409,15 @@ class Film {
   }
 }
 
-export function cueWatch(id: string) {
-  watchFilm?.cue(id)
+export function cueWatch(id: string, play = false) {
+  watchFilm?.cue(id, play)
 }
 
 export function initFilms() {
   const billboard = document.querySelector<HTMLElement>('.billboard-player')
-  const watch = document.querySelector<HTMLElement>('.watch-layout > .player')
+  const watch = document.querySelector<HTMLElement>('#watch .player')
   const films = [billboard, watch].filter((node): node is HTMLElement => Boolean(node)).map((node) => new Film(node))
-  watchFilm = watch ? films[billboard ? 1 : 0] ?? null : null
+  watchFilm = watch ? films[billboard ? 1 : 0] ?? null : films[0] ?? null
   return {
     destroy() {
       films.forEach((film) => film.destroy())

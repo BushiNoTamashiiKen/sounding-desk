@@ -6,12 +6,12 @@
     <title>Media & Insights · Datavault AI</title>
     <meta
       name="description"
-      content="AI tokenization coverage for investors and press. Films, notes, and investor relations from Datavault AI."
+      content="Company news and insights for investors and press. Stories, coverage, and case studies from Datavault AI."
     />
     <meta property="og:title" content="Media & Insights · Datavault AI" />
     <meta
       property="og:description"
-      content="AI tokenization coverage for investors and press. Films, notes, and investor relations from Datavault AI."
+      content="Company news and insights for investors and press. Stories, coverage, and case studies from Datavault AI."
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://i.ytimg.com/vi/vNUaPfunkEU/maxresdefault.jpg" />
@@ -34,7 +34,7 @@
     </script>
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
-  <body>
+  <body class="library">
     <a class="skip" href="#content">Skip to content</a>
     <svg xmlns="http://www.w3.org/2000/svg" hidden aria-hidden="true">
       <symbol id="i-arrow" viewBox="0 0 24 24">
@@ -77,40 +77,58 @@
         </summary>
       </details>
       <nav class="nav-links" aria-label="Primary">
-        <a href="#top" aria-current="page">Media & Insights</a>
-        <a href="#index">Stories</a>
-        <a href="#watch">Films</a>
+        <a href="https://dvlt.ai/about">Company</a>
+        <a href="https://dvlt.ai/datavault">Datavault</a>
+        <a href="#index" aria-current="page">Insights</a>
         <a href="https://ir.datavaultsite.com/" target="_blank" rel="noreferrer">Investors</a>
       </nav>
+      <div class="nav-tools">
+        <button type="button" class="nav-search-toggle" aria-expanded="false" aria-controls="search">
+          <svg class="icon" aria-hidden="true"><use href="#i-search" /></svg>
+          <span class="vh">Search stories</span>
+        </button>
+        <div class="search">
+          <svg class="icon search-ico" aria-hidden="true"><use href="#i-search" /></svg>
+          <input id="search" type="search" placeholder="Search stories" aria-label="Search stories" autocomplete="off" />
+          <button type="button" class="search-clear" hidden>Clear</button>
+        </div>
+        <button type="button" class="btn" data-open-alerts>Subscribe</button>
+      </div>
     </header>
 
     <main id="content">
       <section class="billboard" id="top" aria-labelledby="billboard-title">
         <div class="frame billboard-layout">
           <div class="billboard-copy">
-            <p class="eyebrow">Featured · Nasdaq: DVLT</p>
-            <h1 data-split="intro">
-              <span class="title-plain" id="billboard-title">Concerns mount on the <em>future of AI</em></span>
-              <span class="title-split" aria-hidden="true"></span>
+            <p class="eyebrow">Featured video</p>
+            <h1>
+              <span class="title-plain" id="billboard-title">Concerns mount on the future of AI</span>
             </h1>
-            <p class="billboard-sub">AI tokenization coverage for investors and press.</p>
-            <hr class="rule" />
-          </div>
-          <div class="billboard-aside">
-            <p class="watch-meta">
-              <span id="visit-label" hidden>Latest</span>
-              <time datetime="2026-09-23">23 Sep 2026</time>
+            <p class="billboard-sub" id="lead-meta">
+              <span id="lead-source">Datavault AI CEO on Newsmax</span>
+              <time id="lead-date" datetime="2026-09-23">23 Sep 2026</time>
             </p>
-            <p class="watch-actions">
-              <a class="text-link" href="https://youtu.be/vNUaPfunkEU">Watch on YouTube</a>
+            <p class="lead-actions">
+              <a class="btn" id="lead-play" href="https://youtu.be/vNUaPfunkEU">
+                <svg class="icon lead-ico-play" aria-hidden="true"><use href="#i-play" /></svg>
+                <svg class="icon lead-ico-pause" aria-hidden="true"><use href="#i-pause" /></svg>
+                <span class="lead-label">Watch now</span>
+              </a>
+              <span class="lead-duration" id="lead-duration" hidden></span>
+              <a class="text-link" id="lead-out" href="https://youtu.be/vNUaPfunkEU">Open on YouTube</a>
             </p>
           </div>
-          <div class="player billboard-player">
+          <div class="player billboard-player" data-film="Concerns mount on the future of AI">
             <iframe
               id="billboard"
-              src="https://www.youtube-nocookie.com/embed/vNUaPfunkEU?rel=0"
+              src="https://www.youtube.com/embed/vNUaPfunkEU?rel=0"
               title="Concerns mount on the future of AI"
+              data-video="vNUaPfunkEU"
               data-title="Concerns mount on the future of AI"
+              data-date="23 Sep 2026"
+              data-datetime="2026-09-23"
+              data-source="Datavault AI CEO on Newsmax"
+              data-search="concerns mount future of ai newsmax"
               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen
@@ -127,161 +145,239 @@
         </div>
       </section>
 
-      <section class="section capture" id="subscribe" aria-labelledby="subscribe-title">
-        <div class="frame">
-          <div class="mailer-shell">
-            <div class="mailer-core">
-              <div class="mailer-copy">
-                <p class="kicker">Email alerts</p>
-                <h2 id="subscribe-title">Get the desk from investor relations.</h2>
-                <p class="dek">IR sends films and filings. This page does not keep a list.</p>
-              </div>
-              <p class="capture-action">
-                <a class="btn btn-mail" href="https://ir.datavaultsite.com/news-events/email-alerts" target="_blank" rel="noreferrer" data-track="subscribe_click">
-                  <span class="btn-label">Get email alerts</span>
-                  <span class="btn-ico" aria-hidden="true"><svg class="icon"><use href="#i-letter" /></svg></span>
-                </a>
-                <span class="mailer-note"><a class="text-link" href="https://dvlt.ai/legal/site-privacy">Privacy notice</a></span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="index" aria-labelledby="index-title">
+      <section class="section library" id="index" aria-labelledby="index-title">
         <div class="frame">
           <div class="section-head">
-            <p class="kicker">Stories</p>
             <h2 data-split="scroll">
-              <span class="title-plain" id="index-title">From the media index.</span>
+              <span class="title-plain" id="index-title">Media &amp; Insights</span>
               <span class="title-split" aria-hidden="true"></span>
             </h2>
-            <p>One desk. Cards open the note on this page. The full index holds 59 stories.</p>
-            <p class="section-links">
-              <a class="text-link" href="https://dvlt.ai/insights">All stories</a>
-              <a class="text-link" href="#watch">More video</a>
-            </p>
+            <p>Ideas, stories, and perspectives shaping the future of data.</p>
           </div>
           <div class="index-tools">
-            <div class="filters" role="toolbar" aria-label="Filter stories">
+            <div class="filters" role="toolbar" aria-label="Topics">
               <button type="button" data-filter="all" aria-pressed="true">All</button>
               <button type="button" data-filter="tokenization" aria-pressed="false">Tokenization</button>
-              <button type="button" data-filter="ai" aria-pressed="false">AI</button>
               <button type="button" data-filter="rwa" aria-pressed="false">RWA</button>
               <button type="button" data-filter="platform" aria-pressed="false">Platform</button>
               <button type="button" data-filter="markets" aria-pressed="false">Markets</button>
-              <label class="search">
-                <svg class="icon" aria-hidden="true"><use href="#i-search" /></svg>
-                <span class="sr">Search stories</span>
-                <input id="search" type="search" placeholder="Search stories" autocomplete="off" />
-              </label>
+              <button type="button" data-filter="ai" aria-pressed="false">AI</button>
+              <button type="button" data-filter="case" aria-pressed="false">Case studies</button>
             </div>
-            <p id="result" class="result" role="status"></p>
+            <div class="library-meta">
+              <div class="format-bar" role="toolbar" aria-label="Format">
+                <button type="button" data-view="all" aria-pressed="true">All formats</button>
+                <button type="button" data-view="article" aria-pressed="false">Articles</button>
+                <button type="button" data-view="video" aria-pressed="false">Videos</button>
+              </div>
+              <p id="result" class="result" role="status"></p>
+            </div>
           </div>
-          <div class="story-grid" id="story-grid">
-            <article class="story s-clemente" data-entry data-topic="tokenization" data-published="2026-09-15" data-search="roberto clemente digital bobbleheads clemente day">
-              <a class="story-link" href="#note-clemente">
-                <div class="story-body">
-                  <p class="kicker">Tokenization · Datavault AI</p>
-                  <h3 class="story-title">Roberto Clemente digital bobbleheads arrive for Clemente Day</h3>
-                  <p class="dek">Two collectibles, on sale 15-29 September 2026 at day.21inright.com.</p>
-                  <p class="story-foot"><span>15 Sep 2026</span><span>Read</span></p>
-                </div>
-              </a>
-            </article>
-            <article class="story s-valuing" data-entry data-topic="ai" data-published="2026-06-09" data-search="valuing information ecosystem strategy ceo today">
-              <a class="story-link" href="#note-valuing">
-                <figure class="story-media">
-                  <img src="/media/plate-hall.jpg" width="1800" height="1010" alt="Server cabinets with looped cables and small status lights." loading="lazy" />
-                </figure>
-                <div class="story-body">
-                  <p class="kicker">AI · CEO Today</p>
-                  <h3 class="story-title">Valuing information: the ecosystem strategy behind Datavault AI</h3>
-                  <p>How structured data moves from storage into infrastructure that can be priced.</p>
-                  <p class="story-foot"><span>9 Jun 2026</span><span>Read</span></p>
-                </div>
-              </a>
-            </article>
-            <article class="story s-race" data-entry data-topic="tokenization" data-published="2026-06-04" data-search="race infrastructure tokenized economy business fortune">
-              <a class="story-link" href="#note-race">
-                <figure class="story-media">
-                  <img src="/media/plate-circuit.jpg" width="1800" height="1200" alt="Close view of a populated circuit board." loading="lazy" />
-                </figure>
-                <div class="story-body">
-                  <p class="kicker">Tokenization · Business Fortune</p>
-                  <h3 class="story-title">The race to build the infrastructure behind the tokenized economy</h3>
-                  <p>Business Fortune, 4 June 2026.</p>
-                  <p class="story-foot"><span>4 Jun 2026</span><span>Read</span></p>
-                </div>
-              </a>
-            </article>
-            <article class="story s-rwa" data-entry data-topic="rwa" data-published="2026-06-04" data-search="real world asset tokenization perpetuals techbullion missing piece">
-              <a class="story-link" href="#note-rwa">
-                <div class="story-body">
-                  <p class="kicker">RWA · TechBullion</p>
-                  <h3 class="story-title">The missing piece in real-world asset tokenization</h3>
-                  <p>Liquidity, not another announcement. TechBullion, 4 June 2026.</p>
-                  <p class="story-foot"><span>4 Jun 2026</span><span>Read</span></p>
-                </div>
-              </a>
-            </article>
-            <article class="story s-eco" data-entry data-topic="ai" data-published="2026-05-21" data-search="expanding ai ecosystem london daily news investors">
-              <a class="story-link" href="#note-eco">
-                <figure class="story-media">
-                  <img src="/media/plate-network.jpg" width="1800" height="1200" alt="Numbered ethernet ports with blue and gray patch cables." loading="lazy" />
-                </figure>
-                <div class="story-body">
-                  <p class="kicker">AI · London Daily News</p>
-                  <h3 class="story-title">Why the expanding AI ecosystem may be bigger than investors realise</h3>
-                  <p>London Daily News, 21 May 2026.</p>
-                  <p class="story-foot"><span>21 May 2026</span><span>Read</span></p>
-                </div>
-              </a>
-            </article>
+          <div class="library-grid" id="story-grid">
+        <article class="card" data-entry data-format="article" data-topic="tokenization" data-tags="case" data-published="2026-09-15" data-search="roberto clemente digital bobbleheads clemente day">
+          <a class="story-link card-link" href="#note-clemente">
+            <figure class="card-media is-plain" aria-hidden="true"><span>Tokenization</span></figure>
+            <div class="card-body">
+              <p class="kicker">Tokenization</p>
+              <h3>Roberto Clemente digital bobbleheads arrive for Clemente Day</h3>
+              <p class="card-meta"><span>Datavault AI</span><time datetime="2026-09-15">15 Sep 2026</time></p>
+              <p class="card-cue">Read</p>
+            </div>
+          </a>
+        </article>
+        <article class="card" data-entry data-format="video" data-topic="ai" data-published="2026-09-23" data-search="speed safety ai race newsmax">
+          <button type="button" class="card-play" data-video="5qQPShkEKHw" data-title="Speed versus safety in the AI race" data-date="23 Sep 2026" data-datetime="2026-09-23" data-source="Datavault AI CEO on Newsmax" data-search="speed safety ai race newsmax">
+            <figure class="card-media">
+              <img src="https://i.ytimg.com/vi/5qQPShkEKHw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" />
+              <span class="card-badge" aria-hidden="true"><svg class="icon"><use href="#i-play" /></svg></span>
+            </figure>
+            <div class="card-body">
+              <p class="kicker">AI</p>
+              <span class="card-title">Speed versus safety in the AI race</span>
+              <p class="card-meta"><span>Datavault AI CEO on Newsmax</span><time datetime="2026-09-23">23 Sep 2026</time></p>
+              <p class="card-cue">Play</p>
+            </div>
+          </button>
+        </article>
+        <article class="card" data-entry data-format="article" data-topic="tokenization" data-published="2026-06-04" data-search="race infrastructure tokenized economy business fortune">
+          <a class="story-link card-link" href="#note-race">
+            <figure class="card-media"><img src="/media/plate-circuit.jpg" width="1800" height="1200" alt="Close view of a populated circuit board." loading="lazy" /></figure>
+            <div class="card-body">
+              <p class="kicker">Tokenization</p>
+              <h3>The race to build the infrastructure behind the tokenized economy</h3>
+              <p class="card-meta"><span>Business Fortune</span><time datetime="2026-06-04">4 Jun 2026</time></p>
+              <p class="card-cue">Read</p>
+            </div>
+          </a>
+        </article>
+        <article class="card" data-entry data-format="article" data-topic="ai" data-published="2026-06-09" data-search="valuing information ecosystem strategy ceo today">
+          <a class="story-link card-link" href="#note-valuing">
+            <figure class="card-media"><img src="/media/plate-hall.jpg" width="1800" height="1200" alt="Server cabinets with looped cables and small status lights." loading="lazy" /></figure>
+            <div class="card-body">
+              <p class="kicker">AI</p>
+              <h3>Valuing information: the ecosystem strategy behind Datavault AI</h3>
+              <p class="card-meta"><span>CEO Today</span><time datetime="2026-06-09">9 Jun 2026</time></p>
+              <p class="card-cue">Read</p>
+            </div>
+          </a>
+        </article>
+        <article class="card" data-entry data-format="video" data-topic="ai" data-published="2026-09-22" data-search="keeping ai subordinate newsmax">
+          <button type="button" class="card-play" data-video="xahc2yMSme4" data-title="Keeping AI subordinate to people" data-date="22 Sep 2026" data-datetime="2026-09-22" data-source="Datavault AI CEO on Newsmax" data-search="keeping ai subordinate newsmax">
+            <figure class="card-media">
+              <img src="https://i.ytimg.com/vi/xahc2yMSme4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" />
+              <span class="card-badge" aria-hidden="true"><svg class="icon"><use href="#i-play" /></svg></span>
+            </figure>
+            <div class="card-body">
+              <p class="kicker">AI</p>
+              <span class="card-title">Keeping AI subordinate to people</span>
+              <p class="card-meta"><span>Datavault AI CEO on Newsmax</span><time datetime="2026-09-22">22 Sep 2026</time></p>
+              <p class="card-cue">Play</p>
+            </div>
+          </button>
+        </article>
+        <article class="card" data-entry data-format="article" data-topic="ai" data-published="2026-05-21" data-search="expanding ai ecosystem london daily news investors">
+          <a class="story-link card-link" href="#note-eco">
+            <figure class="card-media"><img src="/media/plate-network.jpg" width="1800" height="1200" alt="Numbered ethernet ports with blue and gray patch cables." loading="lazy" /></figure>
+            <div class="card-body">
+              <p class="kicker">AI</p>
+              <h3>Why the expanding AI ecosystem may be bigger than investors realise</h3>
+              <p class="card-meta"><span>London Daily News</span><time datetime="2026-05-21">21 May 2026</time></p>
+              <p class="card-cue">Read</p>
+            </div>
+          </a>
+        </article>
+        <article class="card" data-entry data-format="article" data-topic="rwa" data-published="2026-06-04" data-search="real world asset tokenization perpetuals techbullion missing piece">
+          <a class="story-link card-link" href="#note-rwa">
+            <figure class="card-media is-plain" aria-hidden="true"><span>RWA</span></figure>
+            <div class="card-body">
+              <p class="kicker">RWA</p>
+              <h3>The missing piece in real-world asset tokenization</h3>
+              <p class="card-meta"><span>TechBullion</span><time datetime="2026-06-04">4 Jun 2026</time></p>
+              <p class="card-cue">Read</p>
+            </div>
+          </a>
+        </article>
+        <article class="card" data-entry data-format="video" data-topic="markets" data-published="2026-09-24" data-search="mandela granddaughter legacy heritage day">
+          <button type="button" class="card-play" data-video="nc1eRLwoyVo" data-title="Mandela’s granddaughter on the next chapter of his legacy" data-date="24 Sep 2026" data-datetime="2026-09-24" data-source="Heritage Day" data-search="mandela granddaughter legacy heritage day">
+            <figure class="card-media">
+              <img src="https://i.ytimg.com/vi/nc1eRLwoyVo/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" />
+              <span class="card-badge" aria-hidden="true"><svg class="icon"><use href="#i-play" /></svg></span>
+            </figure>
+            <div class="card-body">
+              <p class="kicker">Markets</p>
+              <span class="card-title">Mandela’s granddaughter on the next chapter of his legacy</span>
+              <p class="card-meta"><span>Heritage Day</span><time datetime="2026-09-24">24 Sep 2026</time></p>
+              <p class="card-cue">Play</p>
+            </div>
+          </button>
+        </article>
+        <article class="card" data-entry data-format="article" data-topic="platform" data-tags="case" data-search="campus activation real-time engagement">
+          <a class="story-link card-link" href="#note-campus">
+            <figure class="card-media is-plain" aria-hidden="true"><span>Platform</span></figure>
+            <div class="card-body">
+              <p class="kicker">Platform</p>
+              <h3>A campus activation, and the engagement it points toward</h3>
+              <p class="card-meta"><span>Datavault AI</span></p>
+              <p class="card-cue">Read</p>
+            </div>
+          </a>
+        </article>
+        <article class="card" data-entry data-format="video" data-topic="ai" data-published="2026-09-22" data-search="ai surveillance regulation">
+          <button type="button" class="card-play" data-video="ZSTlJXPitIM" data-title="AI surveillance and regulation" data-date="22 Sep 2026" data-datetime="2026-09-22" data-source="A technology chief on the future of AI" data-search="ai surveillance regulation">
+            <figure class="card-media">
+              <img src="https://i.ytimg.com/vi/ZSTlJXPitIM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" />
+              <span class="card-badge" aria-hidden="true"><svg class="icon"><use href="#i-play" /></svg></span>
+            </figure>
+            <div class="card-body">
+              <p class="kicker">AI</p>
+              <span class="card-title">AI surveillance and regulation</span>
+              <p class="card-meta"><span>A technology chief on the future of AI</span><time datetime="2026-09-22">22 Sep 2026</time></p>
+              <p class="card-cue">Play</p>
+            </div>
+          </button>
+        </article>
+        <article class="card" data-entry data-format="article" data-topic="markets" data-search="markets missing value infrastructure layer">
+          <a class="story-link card-link" href="#note-markets">
+            <figure class="card-media is-plain" aria-hidden="true"><span>Markets</span></figure>
+            <div class="card-body">
+              <p class="kicker">Markets</p>
+              <h3>Markets are missing the value of the infrastructure layer under AI</h3>
+              <p class="card-meta"><span>Datavault AI</span></p>
+              <p class="card-cue">Read</p>
+            </div>
+          </a>
+        </article>
+        <article class="card" data-entry data-format="video" data-topic="ai" data-published="2026-09-15" data-search="extinction risk nate insights john bachman">
+          <button type="button" class="card-play" data-video="o6avdVngWMY" data-title="AI extinction risk: industry leaders raise the alarm" data-date="15 Sep 2026" data-datetime="2026-09-15" data-source="Nate Insights with John Bachman" data-search="extinction risk nate insights john bachman">
+            <figure class="card-media">
+              <img src="https://i.ytimg.com/vi/o6avdVngWMY/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" />
+              <span class="card-badge" aria-hidden="true"><svg class="icon"><use href="#i-play" /></svg></span>
+            </figure>
+            <div class="card-body">
+              <p class="kicker">AI</p>
+              <span class="card-title">AI extinction risk: industry leaders raise the alarm</span>
+              <p class="card-meta"><span>Nate Insights with John Bachman</span><time datetime="2026-09-15">15 Sep 2026</time></p>
+              <p class="card-cue">Play</p>
+            </div>
+          </button>
+        </article>
+        <article class="card" data-entry data-format="article" data-topic="markets" data-search="patents liquidity markets functional asset class">
+          <a class="story-link card-link" href="#note-patents">
+            <figure class="card-media is-plain" aria-hidden="true"><span>Markets</span></figure>
+            <div class="card-body">
+              <p class="kicker">Markets</p>
+              <h3>From patents to liquidity to markets</h3>
+              <p class="card-meta"><span>Datavault AI</span></p>
+              <p class="card-cue">Read</p>
+            </div>
+          </a>
+        </article>
+        <article class="card" data-entry data-format="video" data-topic="ai" data-published="2026-08-26" data-search="data storage breakthroughs nathaniel bradley">
+          <button type="button" class="card-play" data-video="3qZbOqPxjbc" data-title="AI data storage breakthroughs" data-date="26 Aug 2026" data-datetime="2026-08-26" data-source="Inside Datavault AI with Nathaniel Bradley" data-search="data storage breakthroughs nathaniel bradley">
+            <figure class="card-media">
+              <img src="https://i.ytimg.com/vi/3qZbOqPxjbc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" />
+              <span class="card-badge" aria-hidden="true"><svg class="icon"><use href="#i-play" /></svg></span>
+            </figure>
+            <div class="card-body">
+              <p class="kicker">AI</p>
+              <span class="card-title">AI data storage breakthroughs</span>
+              <p class="card-meta"><span>Inside Datavault AI with Nathaniel Bradley</span><time datetime="2026-08-26">26 Aug 2026</time></p>
+              <p class="card-cue">Play</p>
+            </div>
+          </button>
+        </article>
+        <article class="card" data-entry data-format="article" data-topic="platform" data-search="infrastructure monetizable asset techbullion">
+          <a class="story-link card-link" href="#note-asset">
+            <figure class="card-media is-plain" aria-hidden="true"><span>Platform</span></figure>
+            <div class="card-body">
+              <p class="kicker">Platform</p>
+              <h3>Infrastructure for turning data into a monetizable asset</h3>
+              <p class="card-meta"><span>TechBullion</span></p>
+              <p class="card-cue">Read</p>
+            </div>
+          </a>
+        </article>
+        <article class="card" data-entry data-format="article" data-topic="markets" data-search="mandela dollar stablecoin financial inclusion coinmarketcap">
+          <a class="story-link card-link" href="#note-mandela">
+            <figure class="card-media is-plain" aria-hidden="true"><span>Markets</span></figure>
+            <div class="card-body">
+              <p class="kicker">Markets</p>
+              <h3>The Mandela Dollar, and the inclusion argument around it</h3>
+              <p class="card-meta"><span>CoinMarketCap</span></p>
+              <p class="card-cue">Read</p>
+            </div>
+          </a>
+        </article>
           </div>
-          <ol class="desk-list">
-            <li data-entry data-topic="markets" data-search="markets missing value infrastructure layer">
-              <a class="desk-link" href="#note-markets">
-                <span class="kicker">Markets · Datavault AI</span>
-                <strong>Markets are missing the value of the infrastructure layer under AI</strong>
-                <span>Read</span>
-              </a>
-            </li>
-            <li data-entry data-topic="platform" data-search="campus activation real-time engagement">
-              <a class="desk-link" href="#note-campus">
-                <span class="kicker">Platform · Datavault AI</span>
-                <strong>A campus activation, and the engagement it points toward</strong>
-                <span>Read</span>
-              </a>
-            </li>
-            <li data-entry data-topic="markets" data-search="patents liquidity markets functional asset class">
-              <a class="desk-link" href="#note-patents">
-                <span class="kicker">Markets · Datavault AI</span>
-                <strong>From patents to liquidity to markets</strong>
-                <span>Read</span>
-              </a>
-            </li>
-            <li data-entry data-topic="platform" data-search="infrastructure monetizable asset techbullion">
-              <a class="desk-link" href="#note-asset">
-                <span class="kicker">Platform · TechBullion</span>
-                <strong>Infrastructure for turning data into a monetizable asset</strong>
-                <span>Read</span>
-              </a>
-            </li>
-            <li data-entry data-topic="markets" data-search="mandela dollar stablecoin financial inclusion coinmarketcap">
-              <a class="desk-link" href="#note-mandela">
-                <span class="kicker">Markets · CoinMarketCap</span>
-                <strong>The Mandela Dollar, and the inclusion argument around it</strong>
-                <span>Read</span>
-              </a>
-            </li>
-          </ol>
           <p id="empty" class="empty" hidden>
             <strong>No stories match that.</strong>
-            <span>Try another topic, or <a class="text-link" href="#watch">watch the films</a>.</span>
+            <span>Try another topic, or switch the format.</span>
           </p>
-          <div class="chapters" id="notes">
-            <article class="chapter" id="note-clemente" data-entry data-topic="tokenization" data-search="roberto clemente digital bobbleheads clemente day">
+          <p class="load-row">
+            <a class="load-more" id="load-more" href="https://dvlt.ai/insights">Load more stories</a>
+          </p>
+<div class="chapters" id="notes">
+            <article class="chapter" id="note-clemente" data-entry data-topic="tokenization" data-tags="case" data-search="roberto clemente digital bobbleheads clemente day">
               <div class="chapter-copy">
                 <p class="kicker">Tokenization · Datavault AI</p>
                 <h2 id="clemente-title">Roberto Clemente digital bobbleheads arrive for Clemente Day.</h2>
@@ -367,7 +463,7 @@
               </div>
             </article>
 
-            <article class="chapter" id="note-campus" data-entry data-topic="platform" data-search="campus activation real-time engagement">
+            <article class="chapter" id="note-campus" data-entry data-topic="platform" data-tags="case" data-search="campus activation real-time engagement">
               <div class="chapter-copy">
                 <p class="kicker">Platform · Datavault AI</p>
                 <h2 id="campus-title">A campus activation.</h2>
@@ -417,162 +513,6 @@
           </div>
         </div>
       </section>
-
-      <section class="section watch" id="watch" aria-labelledby="watch-title">
-        <div class="frame">
-          <div class="watch-layout">
-            <div class="player">
-              <iframe
-                id="player"
-                src="https://www.youtube-nocookie.com/embed/5qQPShkEKHw?rel=0"
-                title="Speed versus safety in the AI race"
-                data-video="5qQPShkEKHw"
-                data-title="Speed versus safety in the AI race"
-                data-date="23 Sep 2026"
-                data-datetime="2026-09-23"
-                data-source="Datavault AI CEO on Newsmax"
-                data-search="speed safety ai race newsmax"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
-              <img class="film-poster" src="https://i.ytimg.com/vi/5qQPShkEKHw/maxresdefault.jpg" alt="" width="480" height="360" />
-              <a class="film-play" href="https://youtu.be/5qQPShkEKHw">
-                <span class="film-play-mark">
-                  <svg class="icon film-ico-play" aria-hidden="true"><use href="#i-play" /></svg>
-                  <svg class="icon film-ico-pause" aria-hidden="true"><use href="#i-pause" /></svg>
-                  <span class="film-play-label">Play</span>
-                </span>
-              </a>
-            </div>
-            <div class="watch-copy">
-              <p class="kicker">Films</p>
-              <h2 class="watch-title" id="watch-title">Speed versus safety in the AI race</h2>
-              <p class="watch-meta">
-                <time id="watch-date" datetime="2026-09-23">23 Sep 2026</time>
-                <span id="watch-source">Datavault AI CEO on Newsmax</span>
-              </p>
-              <p class="watch-actions">
-                <a class="text-link" id="watch-out" href="https://youtu.be/5qQPShkEKHw">Watch on YouTube</a>
-              </p>
-            </div>
-            <aside class="watch-rail" aria-label="Up next">
-              <p class="rail-label">Up next</p>
-              <div class="rail-scroll">
-              <ol class="rail">
-              <li>
-                <a class="upnext" href="https://youtu.be/nc1eRLwoyVo" data-video="nc1eRLwoyVo" data-title="Mandela’s granddaughter on the next chapter of his legacy" data-date="24 Sep 2026" data-datetime="2026-09-24" data-source="Heritage Day" data-search="mandela granddaughter legacy heritage day">
-                  <img src="https://i.ytimg.com/vi/nc1eRLwoyVo/mqdefault.jpg" alt="" width="320" height="180" />
-                  <span><strong>Mandela’s granddaughter on the next chapter of his legacy</strong><time datetime="2026-09-24">24 Sep 2026</time></span>
-                </a>
-              </li>
-              <li>
-                <a class="upnext" href="https://youtu.be/xahc2yMSme4" data-video="xahc2yMSme4" data-title="Keeping AI subordinate to people" data-date="22 Sep 2026" data-datetime="2026-09-22" data-source="Datavault AI CEO on Newsmax" data-search="keeping ai subordinate newsmax">
-                  <img src="https://i.ytimg.com/vi/xahc2yMSme4/mqdefault.jpg" alt="" width="320" height="180" />
-                  <span><strong>Keeping AI subordinate to people</strong><time datetime="2026-09-22">22 Sep 2026</time></span>
-                </a>
-              </li>
-              <li>
-                <a class="upnext" href="https://youtu.be/ZSTlJXPitIM" data-video="ZSTlJXPitIM" data-title="AI surveillance and regulation" data-date="22 Sep 2026" data-datetime="2026-09-22" data-source="A technology chief on the future of AI" data-search="ai surveillance regulation">
-                  <img src="https://i.ytimg.com/vi/ZSTlJXPitIM/mqdefault.jpg" alt="" width="320" height="180" />
-                  <span><strong>AI surveillance and regulation</strong><time datetime="2026-09-22">22 Sep 2026</time></span>
-                </a>
-              </li>
-              <li>
-                <a class="upnext" href="https://youtu.be/o6avdVngWMY" data-video="o6avdVngWMY" data-title="AI extinction risk: industry leaders raise the alarm" data-date="15 Sep 2026" data-datetime="2026-09-15" data-source="Nate Insights with John Bachman" data-search="extinction risk nate insights john bachman">
-                  <img src="https://i.ytimg.com/vi/o6avdVngWMY/mqdefault.jpg" alt="" width="320" height="180" />
-                  <span><strong>AI extinction risk: industry leaders raise the alarm</strong><time datetime="2026-09-15">15 Sep 2026</time></span>
-                </a>
-              </li>
-              <li>
-                <a class="upnext" href="https://youtu.be/3qZbOqPxjbc" data-video="3qZbOqPxjbc" data-title="AI data storage breakthroughs" data-date="26 Aug 2026" data-datetime="2026-08-26" data-source="Inside Datavault AI with Nathaniel Bradley" data-search="data storage breakthroughs nathaniel bradley">
-                  <img src="https://i.ytimg.com/vi/3qZbOqPxjbc/mqdefault.jpg" alt="" width="320" height="180" />
-                  <span><strong>AI data storage breakthroughs</strong><time datetime="2026-08-26">26 Aug 2026</time></span>
-                </a>
-              </li>
-            </ol>
-            </div>
-          </aside>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="context-title">
-        <div class="frame">
-          <div class="section-head">
-            <p class="kicker">Market context</p>
-            <h2 data-split="scroll">
-              <span class="title-plain" id="context-title">Cited figures, not company results.</span>
-              <span class="title-split" aria-hidden="true"></span>
-            </h2>
-          </div>
-          <div class="datum" data-reveal>
-            <ol>
-              <li><strong>$16T</strong><span>Tokenized illiquid assets, bull case by 2030. Nasdaq.</span></li>
-              <li><strong>4.4B</strong><span>Wallets in 2025.</span></li>
-              <li><strong>560M+</strong><span>Crypto owners in 2025.</span></li>
-              <li><strong>$36.8T</strong><span>Listed market cap on Nasdaq.</span></li>
-            </ol>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="record" aria-labelledby="record-title">
-        <div class="frame">
-          <article class="earn">
-            <div class="earn-copy">
-              <p class="kicker">Q2 2026</p>
-              <h2 id="record-title">Q2 2026 results.</h2>
-              <p class="dek">Wednesday, 19 August 2026, 8:30 a.m. ET. Nathaniel Bradley, chief executive, and Brett Moyer, chief financial officer, presented the quarter.</p>
-              <p class="card-meta"><span>Nasdaq: DVLT</span><span>Investor relations</span></p>
-              <p><a class="btn" href="https://ir.datavaultsite.com/">Investor relations <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a></p>
-            </div>
-            <figure class="earn-media">
-              <img src="/media/plate-lock.jpg" width="1800" height="1201" alt="A backlit circuit schematic on glass." loading="lazy" />
-              <figcaption>A schematic, not a figure from the call.</figcaption>
-            </figure>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="press" aria-labelledby="press-title">
-        <div class="frame">
-          <div class="section-head">
-            <p class="kicker">Investor relations</p>
-            <h2 data-split="scroll">
-              <span class="title-plain" id="press-title">From investor relations.</span>
-              <span class="title-split" aria-hidden="true"></span>
-            </h2>
-          </div>
-          <ul class="press-list">
-            <li>
-              <a href="https://ir.datavaultsite.com/news-events/press-releases/detail/505/datavault-ai-signs-non-binding-letter-of-intent-to-acquire-a-19-9-equity-stake-in-datameds-ai-in-consideration-of-an-expanded-technology-license" target="_blank" rel="noreferrer">
-                <time datetime="2026-10-22">22 Oct 2026</time>
-                Letter of intent for a 19.9% stake in DataMEDS AI
-              </a>
-            </li>
-            <li>
-              <a href="https://ir.datavaultsite.com/news-events/press-releases/detail/504/datavault-ai-highlights-data-futures-platform-patent-amid-tokenized-stock-exemption" target="_blank" rel="noreferrer">
-                <time datetime="2026-10-15">15 Oct 2026</time>
-                Data Futures platform patent, beside a tokenized-stock exemption
-              </a>
-            </li>
-            <li>
-              <a href="https://ir.datavaultsite.com/news-events/press-releases/detail/503/datavault-ai-appoints-shareholder-and-investment-executive-jeffrey-tirman-to-the-board-of-directors" target="_blank" rel="noreferrer">
-                <time datetime="2026-10-14">14 Oct 2026</time>
-                Jeffrey Tirman joins the board
-              </a>
-            </li>
-            <li>
-              <a href="https://ir.datavaultsite.com/news-events/press-releases/detail/502/datavault-ai-to-debut-tort-token-capabilities-at-the-mass-torts-made-perfect-conference-in-las-vegas" target="_blank" rel="noreferrer">
-                <time datetime="2026-10-13">13 Oct 2026</time>
-                Tort token capabilities at Mass Torts Made Perfect in Las Vegas
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
     </main>
 
     <footer class="footer">
@@ -595,10 +535,8 @@
           <div>
             <h2>On this page</h2>
             <ul>
-              <li><a href="#top">Featured</a></li>
+              <li><a href="#top">Featured video</a></li>
               <li><a href="#index">Stories</a></li>
-              <li><a href="#watch">Films</a></li>
-              <li><a href="#subscribe">Email alerts</a></li>
             </ul>
           </div>
           <div>
@@ -625,6 +563,24 @@
       </div>
     </footer>
 
+
+    <dialog id="alerts" class="alerts" aria-labelledby="alerts-title">
+      <div class="alerts-head">
+        <div>
+          <p class="kicker">Email alerts</p>
+          <h2 id="alerts-title">Get the desk from investor relations.</h2>
+        </div>
+        <button type="button" class="alerts-close" data-close-alerts aria-label="Close">
+          <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+        </button>
+      </div>
+      <p class="dek">Investor relations sends the alerts. This page does not keep a list.</p>
+      <p class="alerts-note">Their form asks for your name and email, then which alerts you want: press releases, the quote, or SEC filings. The human check runs on that page, so this desk does not take the details.</p>
+      <p class="alerts-actions">
+        <a class="btn" href="https://ir.datavaultsite.com/news-events/email-alerts" target="_blank" rel="noreferrer" data-track="subscribe_click">Open the alerts form</a>
+        <a class="text-link" href="https://dvlt.ai/legal/site-privacy">Privacy notice</a>
+      </p>
+    </dialog>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
